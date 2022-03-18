@@ -1,0 +1,50 @@
+const person = { name: "John Doe" };
+
+function findObj(data, searchedObj) {
+//   data = data.filter(
+//     (x) => typeof x == "object" && x !== null && x !== undefined
+//   );
+//   ex2.2 part 2
+  const result = data.some((x) => x === searchedObj);
+
+  if (!result && data.length > 0) {
+    const el = data.pop();
+    const elValues = Object.values(el);
+
+    return findObj(elValues, searchedObj);
+  }
+
+  // ex2.2 part 3
+  
+
+  for (const [key, value] of Object.entries(object1)) {
+    if (value === searchedObj) {
+        return true;
+    } else {
+        return findObj(object1.values(object1), searchedObj)
+    }
+  }
+
+
+
+  return result;
+}
+
+console.log(
+  findObj(
+    [
+      6,
+      "Test",
+      "value",
+      1,
+      undefined,
+      null,
+      () => {
+        console.log("Hello,  world!");
+      },
+      { count: 5 },
+      { name: "John Doe",  person: person },
+    ],
+    person
+  )
+);
